@@ -23229,6 +23229,41 @@ ros2 launch autoware_launch planning_simulator.launch.xml \
 <td>N/A</td>
 </tr>
 <tr>
+<td>planning_factor.enable_stop</td>
+<td>boolean</td>
+<td>Enable stop planning factor</td>
+<td>False</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>planning_factor.enable_slowdown</td>
+<td>boolean</td>
+<td>Enable slowdown planning factor</td>
+<td>False</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>planning_factor.stop_velocity_threshold</td>
+<td>float</td>
+<td>Velocity threshold to detect a stop [m/s]</td>
+<td>0.1</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>planning_factor.stop_keep_duration_threshold</td>
+<td>float</td>
+<td>Duration threshold to validate a stop [s]</td>
+<td>1.0</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>planning_factor.slowdown_accel_threshold</td>
+<td>float</td>
+<td>Acceleration threshold to detect a slowdown [m/s^2]</td>
+<td>-0.3</td>
+<td>N/A</td>
+</tr>
+<tr>
 <td>debug_params.publish_debug_map</td>
 <td>boolean</td>
 <td>Publish debug map markers</td>
