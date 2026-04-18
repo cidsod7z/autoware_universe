@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../docs/assets/images/autoware-foundation.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
@@ -22859,17 +22859,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#how-to-enabledisable-agnocast-on-build" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to Enable/Disable Agnocast on Build
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -22899,50 +22888,50 @@
 <p>This package provides macros that wrap functions for publish/subscribe operations and smart pointer types for handling ROS 2 messages. When Autoware is built using the default build command, Agnocast is <strong>not enabled</strong>. However, setting the environment variable <code>ENABLE_AGNOCAST=1</code> enables Agnocast and results in a build that includes its integration. This design ensures backward compatibility for users who are unaware of Agnocast, minimizing disruption.</p>
 <h2 id="how-to-use-the-macros-in-this-package">How to Use the Macros in This Package<a class="headerlink" href="#how-to-use-the-macros-in-this-package" title="Permanent link">#</a></h2>
 <p>You can immediately understand how to use the macros just by looking at <code>autoware_agnocast_wrapper.hpp</code>. A typical callback and publisher setup looks like this:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;autoware/agnocast_wrapper/autoware_agnocast_wrapper.hpp&gt;</span>
-
-<span class="n">pub_output_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AUTOWARE_CREATE_PUBLISHER3</span><span class="p">(</span>
-<span class="w">  </span><span class="n">PointCloud2</span><span class="p">,</span>
-<span class="w">  </span><span class="s">"output"</span><span class="p">,</span>
-<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">SensorDataQoS</span><span class="p">().</span><span class="n">keep_last</span><span class="p">(</span><span class="n">max_queue_size_</span><span class="p">),</span>
-<span class="w">  </span><span class="n">pub_options</span>
-<span class="p">);</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">onPointCloud</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">AUTOWARE_MESSAGE_PTR</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">PointCloud2</span><span class="p">)</span><span class="w"> </span><span class="n">input_msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ALLOCATE_OUTPUT_MESSAGE</span><span class="p">(</span><span class="n">pub_output_</span><span class="p">);</span>
-<span class="w">  </span><span class="p">...</span>
-<span class="w">  </span><span class="n">pub_output_</span><span class="o">-&gt;</span><span class="n">publish</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">output</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>```cpp</p>
+<h1 id="include">include <autoware agnocast_wrapper autoware_agnocast_wrapper.hpp><a class="headerlink" href="#include" title="Permanent link">#</a></autoware></h1>
+<p>pub_output_ = AUTOWARE_CREATE_PUBLISHER3(
+  PointCloud2,
+  "output",
+  rclcpp::SensorDataQoS().keep_last(max_queue_size_),
+  pub_options
+);</p>
+<p>void onPointCloud(const AUTOWARE_MESSAGE_PTR(const PointCloud2) input_msg) {
+  auto output = ALLOCATE_OUTPUT_MESSAGE(pub_output_);
+  ...
+  pub_output_-&gt;publish(std::move(output));
+}
+```</p>
 <p>To use the macros provided by this package in your own package, include the following lines in your <code>CMakeLists.txt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">find_package</span><span class="p">(</span><span class="s">autoware_agnocast_wrapper</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
-<span class="nb">ament_target_dependencies</span><span class="p">(</span><span class="s">target</span><span class="w"> </span><span class="s">autoware_agnocast_wrapper</span><span class="p">)</span>
-<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">target</span><span class="w"> </span><span class="o">${</span><span class="nv">autoware_agnocast_wrapper_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
-<span class="nb">autoware_agnocast_wrapper_setup</span><span class="p">(</span><span class="s">target</span><span class="p">)</span>
-</code></pre></div>
+<p><code>cmake
+find_package(autoware_agnocast_wrapper REQUIRED)
+ament_target_dependencies(target autoware_agnocast_wrapper)
+target_include_directories(target ${autoware_agnocast_wrapper_INCLUDE_DIRS})
+autoware_agnocast_wrapper_setup(target)</code></p>
 <h2 id="how-to-enabledisable-agnocast-on-build">How to Enable/Disable Agnocast on Build<a class="headerlink" href="#how-to-enabledisable-agnocast-on-build" title="Permanent link">#</a></h2>
 <p>To build Autoware <strong>with</strong> Agnocast:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_AGNOCAST</span><span class="o">=</span><span class="m">1</span>
-colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
-</code></pre></div>
+<p><code>bash
+export ENABLE_AGNOCAST=1
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release</code></p>
 <p>To build Autoware <strong>without</strong> Agnocast (default behavior):</p>
-<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
-</code></pre></div>
+<p><code>bash
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release</code></p>
 <p>To explicitly <strong>disable</strong> Agnocast when it has been previously enabled:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">unset</span><span class="w"> </span>ENABLE_AGNOCAST
-<span class="c1"># or</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_AGNOCAST</span><span class="o">=</span><span class="m">0</span>
-</code></pre></div>
+<p>```bash
+unset ENABLE_AGNOCAST</p>
+<h1 id="or">or<a class="headerlink" href="#or" title="Permanent link">#</a></h1>
+<p>export ENABLE_AGNOCAST=0
+```</p>
 <p>To rebuild a specific package <strong>without</strong> Agnocast after it was previously built with Agnocast:</p>
-<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-Rf<span class="w"> </span>./install/&lt;package_name&gt;<span class="w"> </span>./build/&lt;package_name&gt;
-<span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_AGNOCAST</span><span class="o">=</span><span class="m">0</span>
-colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>--package-select<span class="w"> </span>&lt;package_name&gt;
-</code></pre></div>
+<p><code>bash
+rm -Rf ./install/&lt;package_name&gt; ./build/&lt;package_name&gt;
+export ENABLE_AGNOCAST=0
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --package-select &lt;package_name&gt;</code></p>
 <p>To rebuild a specific package <strong>with</strong> Agnocast after it was previously built without it:</p>
-<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-Rf<span class="w"> </span>./install/&lt;package_name&gt;<span class="w"> </span>./build/&lt;package_name&gt;
-<span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_AGNOCAST</span><span class="o">=</span><span class="m">1</span>
-colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>--package-select<span class="w"> </span>&lt;package_name&gt;
-</code></pre></div>
+<p><code>bash
+rm -Rf ./install/&lt;package_name&gt; ./build/&lt;package_name&gt;
+export ENABLE_AGNOCAST=1
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release --package-select &lt;package_name&gt;</code></p>
 <p>Please note that the <code>ENABLE_AGNOCAST</code> environment variable may not behave as expected in the following scenario:</p>
 <ul>
 <li>Package A depends on build artifacts from Package B</li>

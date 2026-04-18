@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../docs/assets/images/autoware-foundation.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
@@ -23066,180 +23066,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Output
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parameters
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#input-channel-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input Channel parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#core-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#assumptions-known-limits" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Assumptions / Known limits
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-benchmark-unit-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Benchmark &amp; Unit Testing
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Performance Benchmark &amp; Unit Testing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-run-locally" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to Run Locally
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rosbag-replay-visualization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rosbag Replay &amp; Visualization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-error-detection-and-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        (Optional) Error detection and handling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-performance-characterization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        (Optional) Performance characterization
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="(Optional) Performance characterization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#evaluation-of-mussp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Evaluation of muSSP
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-referencesexternal-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        (Optional) References/External links
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-future-extensions-unimplemented-parts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        (Optional) Future extensions / Unimplemented parts
-      
-    </span>
-  </a>
   
 </li>
       
@@ -23311,42 +23139,37 @@ For big vehicles such as trucks and buses, we have separate models for passenger
 <ul>
 <li>Single detection input:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">input/detection01/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/objects</span>
-<span class="nt">input/detection01/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detected_objects</span><span class="w"> </span><span class="c1"># general input channel type</span>
-<span class="nt">input/detection02/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input/objects02</span>
-<span class="nt">input/detection02/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"> </span><span class="c1"># Disabled</span>
-</code></pre></div>
+<p><code>yaml
+input/detection01/objects: /perception/object_recognition/detection/objects
+input/detection01/channel: detected_objects # general input channel type
+input/detection02/objects: input/objects02
+input/detection02/channel: none # Disabled</code></p>
 <ul>
 <li>Multiple detection inputs:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># lidar centerpoint</span>
-<span class="nt">input/detection01/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/lidar_centerpoint/objects</span>
-<span class="nt">input/detection01/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lidar_centerpoint</span>
-
-<span class="c1"># lidar short_range centerpoint</span>
-<span class="nt">input/detection02/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/centerpoint_short_range/objects</span>
-<span class="nt">input/detection02/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lidar_centerpoint_short_range</span>
-
-<span class="c1"># camera lidar fusion</span>
-<span class="nt">input/detection03/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/clustering/camera_lidar_fusion/objects</span>
-<span class="nt">input/detection03/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera_lidar_fusion</span>
-
-<span class="c1"># camera lidar fusion based irregular object detection</span>
-<span class="nt">input/detection04/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/irregular_object/objects</span>
-<span class="nt">input/detection04/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">camera_lidar_fusion_irregular</span>
-
-<span class="c1"># detection by tracker</span>
-<span class="nt">input/detection05/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/detection_by_tracker/objects</span>
-<span class="nt">input/detection05/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detection_by_tracker</span>
-
-<span class="c1"># radar</span>
-<span class="nt">input/detection06/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/perception/object_recognition/detection/radar/objects</span>
-<span class="nt">input/detection06/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">radar</span>
-
-<span class="c1"># disable</span>
-<span class="nt">input/detection07/objects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">input/objects07</span>
-<span class="nt">input/detection07/channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"> </span><span class="c1"># Disabled</span>
-</code></pre></div>
+<p>```yaml</p>
+<h1 id="lidar-centerpoint">lidar centerpoint<a class="headerlink" href="#lidar-centerpoint" title="Permanent link">#</a></h1>
+<p>input/detection01/objects: /perception/object_recognition/detection/lidar_centerpoint/objects
+input/detection01/channel: lidar_centerpoint</p>
+<h1 id="lidar-short_range-centerpoint">lidar short_range centerpoint<a class="headerlink" href="#lidar-short_range-centerpoint" title="Permanent link">#</a></h1>
+<p>input/detection02/channel: /perception/object_recognition/detection/centerpoint_short_range/objects
+input/detection02/objects: lidar_centerpoint_short_range</p>
+<h1 id="camera-lidar-fusion">camera lidar fusion<a class="headerlink" href="#camera-lidar-fusion" title="Permanent link">#</a></h1>
+<p>input/detection03/objects: /perception/object_recognition/detection/clustering/camera_lidar_fusion/objects
+input/detection03/channel: camera_lidar_fusion</p>
+<h1 id="camera-lidar-fusion-based-irregular-object-detection">camera lidar fusion based irregular object detection<a class="headerlink" href="#camera-lidar-fusion-based-irregular-object-detection" title="Permanent link">#</a></h1>
+<p>input/detection04/objects: /perception/object_recognition/detection/irregular_object/objects
+input/detection04/channel: camera_lidar_fusion_irregular</p>
+<h1 id="detection-by-tracker">detection by tracker<a class="headerlink" href="#detection-by-tracker" title="Permanent link">#</a></h1>
+<p>input/detection05/objects: /perception/object_recognition/detection/detection_by_tracker/objects
+input/detection05/channel: detection_by_tracker</p>
+<h1 id="radar">radar<a class="headerlink" href="#radar" title="Permanent link">#</a></h1>
+<p>input/detection06/objects: /perception/object_recognition/detection/radar/objects
+input/detection06/channel: radar</p>
+<h1 id="disable">disable<a class="headerlink" href="#disable" title="Permanent link">#</a></h1>
+<p>input/detection07/objects: input/objects07
+input/detection07/channel: none # Disabled
+```</p>
 <p>Up to 12 detection inputs can be configured (detection01 through detection12). Each input consists of an objects topic and its corresponding channel configuration.</p>
 <h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">#</a></h3>
 <table>
@@ -23777,13 +23600,13 @@ For big vehicles such as trucks and buses, we have separate models for passenger
 <p>Unit tests and benchmarks are included to evaluate tracker performance under varying detection loads and object types.</p>
 <h3 id="how-to-run-locally">How to Run Locally<a class="headerlink" href="#how-to-run-locally" title="Permanent link">#</a></h3>
 <h4 id="1-build-with-tests">1. Build with Tests<a class="headerlink" href="#1-build-with-tests" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>autoware_multi_object_tracker<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo
-</code></pre></div>
+<p><code>bash
+colcon build --packages-select autoware_multi_object_tracker \
+  --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo</code></p>
 <h4 id="2-run-the-performance-benchmark">2. Run the Performance Benchmark<a class="headerlink" href="#2-run-the-performance-benchmark" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>install/setup.bash
-./build/autoware_multi_object_tracker/test_multi_object_tracker
-</code></pre></div>
+<p><code>bash
+source install/setup.bash
+./build/autoware_multi_object_tracker/test_multi_object_tracker</code></p>
 <p>This runs the default test (<code>SimulatedDataPerformanceTest</code> and <code>RealDataRosbagPerformanceTest</code>) and outputs timing data.</p>
 <h4 id="3-run-optional-profiling-modestests">3. Run Optional Profiling Modes/Tests<a class="headerlink" href="#3-run-optional-profiling-modestests" title="Permanent link">#</a></h4>
 <ul>
@@ -23794,15 +23617,15 @@ For big vehicles such as trucks and buses, we have separate models for passenger
 </ul>
 <p>These optional profiling tests are compiled as disabled and can be run directly using GoogleTest options:</p>
 <p>To run a specific option profiling test:</p>
-<div class="highlight"><pre><span></span><code>./build/autoware_multi_object_tracker/test_multi_object_tracker<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--gtest_also_run_disabled_tests<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--gtest_filter<span class="o">=</span><span class="s2">"*.*AssociationTest"</span>
-</code></pre></div>
+<p><code>bash
+./build/autoware_multi_object_tracker/test_multi_object_tracker \
+  --gtest_also_run_disabled_tests \
+  --gtest_filter="*.*AssociationTest"</code></p>
 <p>To run multiple profiling tests together (separate with <code>:</code>):</p>
-<div class="highlight"><pre><span></span><code>./build/autoware_multi_object_tracker/test_multi_object_tracker<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--gtest_also_run_disabled_tests<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--gtest_filter<span class="o">=</span><span class="s2">"*.*AssociationTest:*.*PerformanceVsPedestrianCount"</span>
-</code></pre></div>
+<p><code>bash
+./build/autoware_multi_object_tracker/test_multi_object_tracker \
+  --gtest_also_run_disabled_tests \
+  --gtest_filter="*.*AssociationTest:*.*PerformanceVsPedestrianCount"</code></p>
 <p>This allows you to evaluate scalability with object count and other scenarios without modifying the source code.</p>
 <h3 id="rosbag-replay-visualization">Rosbag Replay &amp; Visualization<a class="headerlink" href="#rosbag-replay-visualization" title="Permanent link">#</a></h3>
 <h4 id="simulated-rosbag-output">Simulated Rosbag Output<a class="headerlink" href="#simulated-rosbag-output" title="Permanent link">#</a></h4>
@@ -23812,9 +23635,9 @@ For big vehicles such as trucks and buses, we have separate models for passenger
 <li>Run the test; the output <code>.db3</code> path is printed</li>
 <li>Play rosbag and visualize using rviz(suggested to use a product one):</li>
 </ol>
-<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>&lt;output_file&gt;.db3
-rviz2<span class="w"> </span>-d<span class="w"> </span>&lt;your_rviz_config&gt;.rviz
-</code></pre></div>
+<p><code>bash
+ros2 bag play &lt;output_file&gt;.db3
+rviz2 -d &lt;your_rviz_config&gt;.rviz</code></p>
 <h4 id="real-rosbag-input">Real Rosbag Input<a class="headerlink" href="#real-rosbag-input" title="Permanent link">#</a></h4>
 <ol>
 <li>Set the path in <code>runPerformanceTestWithRosbag()</code> to a real <code>.db3</code> file</li>

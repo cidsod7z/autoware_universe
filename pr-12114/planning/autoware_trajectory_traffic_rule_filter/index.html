@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../docs/assets/images/autoware-foundation.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
     
     
       
@@ -23032,11 +23032,11 @@
 </table>
 <h4 id="plugin-configuration">Plugin Configuration<a class="headerlink" href="#plugin-configuration" title="Permanent link">#</a></h4>
 <p>The active filters are specified in <code>config/trajectory_traffic_rule_filter.param.yaml</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">/**</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ros__parameters</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">filter_names</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"autoware::trajectory_traffic_rule_filter::plugin::TrafficLightFilter"</span>
-</code></pre></div></div>
+<p><code>yaml
+/**:
+  ros__parameters:
+    filter_names:
+      - "autoware::trajectory_traffic_rule_filter::plugin::TrafficLightFilter"</code></p></div>
 
 
 
